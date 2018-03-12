@@ -21,43 +21,18 @@ public class Messenger {
 	@Autowired
 	private AmqpTemplate amqpTemplate;
 	
-	//@Value("${revature.hydra.service.exchange}")
 	private static final String SERVICE_EXCHANGE = "revature.hydra.service";
-	
-	//@Value("${revature.hydra.service.grade}")
 	private static final String GRADE = "revature.hydra.service.grade";
-	
-	//@Value("${revature.hydra.service.batch}")
 	private static final String BATCH = "revature.hydra.service.batch";
-	
-	//@Value("${revature.hydra.service.trainee")
 	private static final String TRAINEE = "revature.hydra.service.trainee";
-	
-	//@Value("${revature.hydra.service.note}")
 	private static final String NOTE = "revature.hydra.service.note";
-	
-	//@Value("${revature.hydra.service.assessment}")
 	private static final String ASSESSMENT = "revature.hydra.service.assessment";
-	
-	//@Value("${revature.hydra.service.panel}")
 	private static final String PANEL = "revature.hydra.service.panel";
-	
-	//@Value("${revature.hydra.service.batchList}")
 	private static final String BATCH_LIST = "revature.hydra.service.batch.list";
-	
-	//@Value("${revature.hydra.service.noteList}")
 	private static final String NOTE_LIST = "revature.hydra.service.note.list";
-	
-	//@Value("${revature.hydra.service.traineeList}")
 	private static final String TRAINEE_LIST = "revature.hydra.service.trainee.list";
-	
-	//@Value("${revature.hydra.service.panelList}")
 	private static final String PANEL_LIST = "revature.hydra.service.panel.list";
-	
-	//@Value("${revature.hydra.service.gradeList}")
 	private static final String GRADE_LIST = "revature.hydra.service.grade.list";
-	
-	//@Value("${revature.hydra.service.assessmentList}")
 	private static final String ASSESSMENT_LIST = "revature.hydra.service.assessment.list";
 	
 	public List<Note> findAllQCTraineeNotes(int batchId, int weekNumber) {
