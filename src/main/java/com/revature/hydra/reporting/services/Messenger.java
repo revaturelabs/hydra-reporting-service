@@ -21,65 +21,65 @@ public class Messenger {
 	@Autowired
 	private AmqpTemplate amqpTemplate;
 	
-	@Value("${revature.hydra.service.exchange}")
-	private String serviceExchange;
+	//@Value("${revature.hydra.service.exchange}")
+	private static final String SERVICE_EXCHANGE = "revature.hydra.service";
 	
-	@Value("${revature.hydra.service.grade}")
-	private String grade;
+	//@Value("${revature.hydra.service.grade}")
+	private static final String GRADE = "revature.hydra.service.grade";
 	
-	@Value("${revature.hydra.service.batch}")
-	private String batch;
+	//@Value("${revature.hydra.service.batch}")
+	private static final String BATCH = "revature.hydra.service.batch";
 	
-	@Value("${revature.hydra.service.trainee")
-	private String trainee;
+	//@Value("${revature.hydra.service.trainee")
+	private static final String TRAINEE = "revature.hydra.service.trainee";
 	
-	@Value("${revature.hydra.service.note}")
-	private String note;
+	//@Value("${revature.hydra.service.note}")
+	private static final String NOTE = "revature.hydra.service.note";
 	
-	@Value("${revature.hydra.service.assessment}")
-	private String assessment;
+	//@Value("${revature.hydra.service.assessment}")
+	private static final String ASSESSMENT = "revature.hydra.service.assessment";
 	
-	@Value("${revature.hydra.service.panel}")
-	private String panel;
+	//@Value("${revature.hydra.service.panel}")
+	private static final String PANEL = "revature.hydra.service.panel";
 	
-	@Value("${revature.hydra.service.batchList}")
-	private String batchList;
+	//@Value("${revature.hydra.service.batchList}")
+	private static final String BATCH_LIST = "revature.hydra.service.batch.list";
 	
-	@Value("${revature.hydra.service.noteList}")
-	private String noteList;
+	//@Value("${revature.hydra.service.noteList}")
+	private static final String NOTE_LIST = "revature.hydra.service.note.list";
 	
-	@Value("${revature.hydra.service.traineeList}")
-	private String traineeList;
+	//@Value("${revature.hydra.service.traineeList}")
+	private static final String TRAINEE_LIST = "revature.hydra.service.trainee.list";
 	
-	@Value("${revature.hydra.service.panelList}")
-	private String panelList;
+	//@Value("${revature.hydra.service.panelList}")
+	private static final String PANEL_LIST = "revature.hydra.service.panel.list";
 	
-	@Value("${revature.hydra.service.gradeList}")
-	private String gradeList;
+	//@Value("${revature.hydra.service.gradeList}")
+	private static final String GRADE_LIST = "revature.hydra.service.grade.list";
 	
-	@Value("${revature.hydra.service.assessmentList}")
-	private String assessmentList;
+	//@Value("${revature.hydra.service.assessmentList}")
+	private static final String ASSESSMENT_LIST = "revature.hydra.service.assessment.list";
 	
 	public List<Note> findAllQCTraineeNotes(int batchId, int weekNumber) {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findAllQCTraineeNotes");
 		msg.addProperty("batchId", batchId);
 		msg.addProperty("week", weekNumber);
-		List<Note> reply = (List<Note>) amqpTemplate.convertSendAndReceive(serviceExchange, noteList, msg.toString());
+		List<Note> reply = (List<Note>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, NOTE_LIST, msg.toString());
 		return reply;
 	}
 
 	public List<Batch> findAllCurrentWithNotesAndTrainees() {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findAllCurrentWithNotesAndTrainees");
-		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(serviceExchange, batchList, msg.toString());
+		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, BATCH_LIST, msg.toString());
 		return reply;
 	}
 
 	public List<Batch> findAllCurrentWithNotes() {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findAllCurrentWithNotes");
-		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(serviceExchange, batchList, msg.toString());
+		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, BATCH_LIST, msg.toString());
 		return reply;
 	}
 
@@ -88,7 +88,7 @@ public class Messenger {
 		msg.addProperty("methodName", "findQCBatchNotes");
 		msg.addProperty("batchId", batchId);
 		msg.addProperty("week", week);
-		Note reply = (Note) amqpTemplate.convertSendAndReceive(serviceExchange, note, msg.toString());
+		Note reply = (Note) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, NOTE, msg.toString());
 		return reply;
 	}
 
@@ -96,7 +96,7 @@ public class Messenger {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findAllByBatch");
 		msg.addProperty("batchId", batchId);
-		List<Trainee> reply = (List<Trainee>) amqpTemplate.convertSendAndReceive(serviceExchange, traineeList, msg.toString());
+		List<Trainee> reply = (List<Trainee>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, TRAINEE_LIST, msg.toString());
 		return reply;
 	}
 
@@ -104,7 +104,7 @@ public class Messenger {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findOneWithTraineesAndGrades");
 		msg.addProperty("batchId", batchId);
-		Batch reply = (Batch) amqpTemplate.convertSendAndReceive(serviceExchange, batch, msg.toString());
+		Batch reply = (Batch) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, BATCH, msg.toString());
 		
 		return reply;
 	}
@@ -112,14 +112,14 @@ public class Messenger {
 	public List<Batch> findAllCurrentWithTrainees() {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findAllCurrentWithTrainees");
-		List<Batch> reply  = (List<Batch>) amqpTemplate.convertSendAndReceive(serviceExchange, batchList, msg.toString());
+		List<Batch> reply  = (List<Batch>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, BATCH_LIST, msg.toString());
 		return reply;
 	}
 
 	public List<Panel> findBiWeeklyPanels() {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findBiWeeklyPanels");
-		List<Panel> reply = (List<Panel>) amqpTemplate.convertSendAndReceive(serviceExchange, panelList, msg.toString());
+		List<Panel> reply = (List<Panel>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, PANEL_LIST, msg.toString());
 		return reply;
 	}
 
@@ -127,7 +127,7 @@ public class Messenger {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findByTrainee");
 		msg.addProperty("traineeId", traineeId);
-		List<Grade> reply = (List<Grade>) amqpTemplate.convertSendAndReceive(serviceExchange, gradeList, msg.toString());
+		List<Grade> reply = (List<Grade>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, GRADE_LIST, msg.toString());
 		return reply;
 	}
 
@@ -135,7 +135,7 @@ public class Messenger {
 		JsonObject msg = new JsonObject();
 		msg.addProperty("methodName", "findByBatch");
 		msg.addProperty("batchId", batchId);
-		List<Grade> reply = (List<Grade>) amqpTemplate.convertSendAndReceive(serviceExchange, gradeList, msg.toString());
+		List<Grade> reply = (List<Grade>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, GRADE_LIST, msg.toString());
 		return reply;
 	}
 
@@ -144,7 +144,7 @@ public class Messenger {
 		msg.addProperty("methodName", "findByBatchIdAndWeek");
 		msg.addProperty("batchId", batchId);
 		msg.addProperty("week", week);
-		List<Assessment> reply = (List<Assessment>) amqpTemplate.convertSendAndReceive(serviceExchange, assessmentList, msg.toString());
+		List<Assessment> reply = (List<Assessment>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, ASSESSMENT_LIST, msg.toString());
 		return reply;
 	}
 
@@ -154,7 +154,7 @@ public class Messenger {
 		msg.addProperty("month", month);
 		msg.addProperty("day", day);
 		msg.addProperty("year", year);
-		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(serviceExchange, batchList, msg.toString());
+		List<Batch> reply = (List<Batch>) amqpTemplate.convertSendAndReceive(SERVICE_EXCHANGE, BATCH_LIST, msg.toString());
 		return reply;
 	}
 

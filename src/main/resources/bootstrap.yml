@@ -3,5 +3,5 @@ spring:
     name: reporting
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://35.183.9.62:8888
       
