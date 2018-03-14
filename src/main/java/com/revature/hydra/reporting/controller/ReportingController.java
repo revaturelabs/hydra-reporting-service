@@ -1,4 +1,4 @@
-package com.revature.hydra.reporting.controllers;
+package com.revature.hydra.reporting.controller;
 
 import java.util.Date;
 import java.util.HashMap;
